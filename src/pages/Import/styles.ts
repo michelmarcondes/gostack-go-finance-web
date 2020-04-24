@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { shade } from 'polished';
 
+interface UploadFilesStatus {
+  type?: 'success' | 'error' | 'fileNotFound';
+}
+
 export const Container = styled.div`
   width: 100%;
   max-width: 736px;
@@ -53,4 +57,17 @@ export const Footer = styled.section`
       background: ${shade(0.2, '#ff872c')};
     }
   }
+`;
+
+const messageColors = {
+  default: '#5636D3',
+  error: '#e83f5b',
+  success: '#12a454',
+  fileNotFound: '#e83f5b',
+};
+
+export const UploadStatusMessage = styled.div`
+  display: block;
+  margin-top: 10px;
+  color: ${({ type }: UploadFilesStatus) => messageColors[type || 'default']};
 `;
